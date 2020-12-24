@@ -6,7 +6,7 @@ def text_utilities(request):
     context_dict = {}
     return render(request, 'utilities/utility_home.html', context_dict)
 
-
+#TEXT-UTILITY : This view is for removing punctuations.
 def remove_punctuations(request):
     if request.method == 'GET':
         text_to_analyze = request.GET.get('text', 'default')
@@ -24,6 +24,7 @@ def remove_punctuations(request):
     return render(request, 'utilities/remove_punctuation.html', context_dict)
 
 
+#TEXT UTILITY : This view is for capitalizing alternate characters
 def capitalize_alternate(request):
     if request.method == 'GET':
         text_to_analyze = request.GET.get('text', 'default')
