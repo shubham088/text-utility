@@ -6,3 +6,11 @@ This also includes text utililties such as removing punctuations from the text, 
 
 
 This is a basic tutorial for getting a hand dirty in django.
+
+Apps : 
+
+1. home => simple diplays web page with some message
+2. utilities => It has 2 text utility . 
+                1. remove punctuation
+                2. capitalize alternate character
+3. fileUpload  => This is a app which uploads images and has a gallary page which shows all the      images and filtering option is also available using different category. 
