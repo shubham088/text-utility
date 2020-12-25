@@ -8,8 +8,8 @@ from .models import ImageCollections
 
 def upload_image(request):
     if request.method == 'POST':
-        print("files : ", request.FILES)
-        print("other data : ", request.POST)
+        #print("files : ", request.FILES)
+        #print("other data : ", request.POST)
         formObj = ImageForm(request.POST, request.FILES)
 
         if formObj.is_valid():
@@ -22,9 +22,21 @@ def upload_image(request):
 
     
 def image_gallery(request):
-    #if request.method == "POST":
-        ##filter form to be added to filter images acc to category
-    
+    if request.method == "POST":
+        #filter form to be added to filter images acc to category
+        if request.POST.get('animal') == 'on':
+            image_collections = ImageCollections.objects.filter(category = 'animal')
+        elif request.POST.get('cars') == 'on':
+            image_collections = ImageCollections.objects.filter(category = 'cars')
+        elif request.POST.get('bikes') == 'on':
+            image_collections = ImageCollections.objects.filter(category = 'bike')
+        elif request.POST.get('scenary') == 'on':
+            image_collections = ImageCollections.objects.filter(category = 'scenary')
+        elif request.POST.get('river') == 'on':
+            image_collections = ImageCollections.objects.filter(category = 'river')
+        else:
+            image_collections = ImageCollections.objects.all()
+        #print('len of records : ', len(image_collections))
+        return render(request, 'fileUpload/image_gallery.html', {'image_collections':image_collections})
     image_collections = ImageCollections.objects.all()
-    print('len of records : ', len(image_collections))
     return render(request, 'fileUpload/image_gallery.html', {'image_collections':image_collections})

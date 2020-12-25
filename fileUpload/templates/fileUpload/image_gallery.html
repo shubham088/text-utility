@@ -11,15 +11,37 @@
     <title>Image Gallery</title>
   </head>
   <body>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand">Filters</a>
+      <form action="/upload/image_gallary/" method="post">
+        {% csrf_token %}
+        <input type="checkbox" name='animal'>Animal</input>
+        <input type="checkbox" name='cars'>Cars</input>
+        <input type="checkbox" name='bikes'>Bikes</input>
+        <input type="checkbox" name='scenary'>Scenary</input>
+        <input type="checkbox" name='river'>River</input>
+        <input type="submit" name="submit" value="submit">
+      </form>
+    </nav>
     <h1 style="text-align: center;">Image Gallery</h1>
 
     <div class="container">
         <div>
-        
-             {% for image in image_collections %}
-                <img src="{{ image.img.url }}" alt="">
-             {% endfor %}
-
+          <table class="table table-bordered">
+            <tr>
+              <td>Image Description</td>
+              <td>Image Category</td>
+              <td style="text-align: center;">Image</td>
+            </tr>
+            {% for image in image_collections %}
+            <tr>
+                <td>{{image.description}}</td>
+                <td>{{image.category}}</td>
+                <td style="text-align: center;"><img src="{{ image.img.url }}" alt="" height="50%" width="50%"></td>
+            </tr>
+            {% endfor %}
+          </table>
+             
         </div>
     </div>
 
