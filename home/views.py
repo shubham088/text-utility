@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login, logout
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -49,10 +50,18 @@ def handleLogin(request):
         user = authenticate(username = username, password = user_password)
         print("user : ", user)
         if user is not None:
+            login(request, user)
             messages.add_message(request, messages.INFO, 'Login succesfull')
             return render(request, 'home/login-landing.html', {})
-    messages.add_message(request, messages.INFO, 'Try to login again !!!')
     return render(request, 'home/home-page.html', {})   
 
 
+def handleLogout(request):
+    logout(request)
+    return redirect('/')
 
+def admin_page(request):
+    if request.user.is_superuser:
+        return render(request, 'home/admin-page.html', {})
+    else:
+        return redirect('/')

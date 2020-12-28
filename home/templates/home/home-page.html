@@ -6,6 +6,14 @@
     <title>Home</title>
   </head>
   <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand">Home</a>
+      <form class="form-inline">
+
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
     <h1 style="text-align: center;">This is home page</h1>
     <div class = 'container'>
       {% if messages %}
@@ -29,8 +37,17 @@
             </ul>
           </div>
           <div style="display: inline-block;">
+            {% if request.user.is_authenticated %}
+
+             <div style="display: inline-block;">
+                    {{request.user.username}}
+             </div>
+            <a href="/home/logout-user/"><button type="button" class="btn btn-success mx-auto d-block">Logout</button></a>
+            
+            {% else %}
             <button type="button" class="btn btn-success mx-auto d-block" data-toggle="modal" data-target="#exampleModal">Login</button>
-          <button type="button" class="btn btn-info mx-auto d-block" data-toggle="modal" data-target="#exampleModalforSignup">Sign Up</button>
+            <button type="button" class="btn btn-info mx-auto d-block" data-toggle="modal" data-target="#exampleModalforSignup">Sign Up</button>
+             {% endif %}
           </div>
       </div>
  
