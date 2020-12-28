@@ -2,10 +2,11 @@ from django.shortcuts import render
 from .forms import ImageForm
 from django.contrib import messages
 from .models import ImageCollections
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def upload_image(request):
     if request.method == 'POST':
         #print("files : ", request.FILES)
@@ -20,7 +21,7 @@ def upload_image(request):
         formObj = ImageForm()
         return render(request, 'fileUpload/uploadPage.html', {'formObj':formObj})
 
-    
+@login_required
 def image_gallery(request):
     if request.method == "POST":
         #filter form to be added to filter images acc to category

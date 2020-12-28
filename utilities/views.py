@@ -1,12 +1,15 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def text_utilities(request):
     context_dict = {}
     return render(request, 'utilities/utility_home.html', context_dict)
 
 #TEXT-UTILITY : This view is for removing punctuations.
+@login_required
 def remove_punctuations(request):
     if request.method == 'GET':
         text_to_analyze = request.GET.get('text', 'default')
@@ -25,6 +28,7 @@ def remove_punctuations(request):
 
 
 #TEXT UTILITY : This view is for capitalizing alternate characters
+@login_required
 def capitalize_alternate(request):
     if request.method == 'GET':
         text_to_analyze = request.GET.get('text', 'default')
