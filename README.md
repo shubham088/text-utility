@@ -14,3 +14,11 @@ Apps :
                 1. remove punctuation
                 2. capitalize alternate character
 3. fileUpload  => This is a app which uploads images and has a gallary page which shows all the      images and filtering option is also available using different category. 
+
+
+### Topics Covered : 
+    1. Uploading files
+    2. User authentication 
+    3. Writing Custom Middleware (adding group parameter in request)
+    4. using Bootstrap
+
