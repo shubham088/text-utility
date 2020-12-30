@@ -58,10 +58,11 @@ def handleLogin(request):
 
 def handleLogout(request):
     logout(request)
-    return redirect('/')
+    return redirect('/home')
 
 def admin_page(request):
+    print("Group : ", request.group)
     if request.user.is_superuser:
         return render(request, 'home/admin-page.html', {})
     else:
-        return redirect('/')
+        return redirect('/home')
